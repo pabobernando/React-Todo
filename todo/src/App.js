@@ -63,7 +63,7 @@ const TaskApp = () => {
   const [tasks,setTasks] = useState(data);
   return <>
     <Header />
-    <InfoBar taskNumber={tasks.lenght} />
+    <InfoBar taskNumber={tasks.length} />
     <TaskAdder setTasks={setTasks} tasks={tasks} />
     <TaskList tasks={tasks} />
   </>
