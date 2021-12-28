@@ -45,18 +45,22 @@ const TaskAdder = ({setTasks, tasks}) => {
   </div>
 };
 
-const Task = ({ message, id}) => {
+const Task = ({ message, id, setTasks, tasks}) => {
+  const handleDelete = () => {
+    const updatedTasks = tasks.filter(task => task.id !== id);
+    setTasks(updatedTasks);
+  }
   return  (
     <div>
       <div>{message}</div>
-      <button>Delete</button>
+      <button onClick={() => handleDelete()}>Delete</button>
     </div>
   )
 }
 
-const TaskList = ({tasks}) => {
+const TaskList = ({tasks, setTasks}) => {
   return tasks.map(task => {
-    return <Task message={task.message} id={task.id} />
+    return <Task message={task.message} id={task.id} setTasks={setTasks} tasks={tasks} />
   })
 } 
 
@@ -66,7 +70,7 @@ const TaskApp = () => {
     <Header />
     <InfoBar taskNumber={tasks.length} />
     <TaskAdder setTasks={setTasks} tasks={tasks} />
-    <TaskList tasks={tasks} />
+    <TaskList tasks={tasks} setTasks={setTasks} />
   </>
 };
 
