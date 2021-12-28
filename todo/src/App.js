@@ -36,11 +36,12 @@ const TaskAdder = ({setTasks, tasks}) => {
       message: currentValue
     }
     setTasks([...tasks, newTask])
+    setCurrentValue('');
   }
 
   return <div>
-    <input type="text" onChange={event => setCurrentValue(event.target.value)}/>
-    <button onClick={() => handleAddTask()}>Tambah</button>
+    <input type="text" value={currentValue} onChange={event => setCurrentValue(event.target.value)}/>
+    <button disabled={currentValue === ''} onClick={() => handleAddTask()}>Tambah</button>
   </div>
 };
 
@@ -57,7 +58,7 @@ const TaskList = ({tasks}) => {
   return tasks.map(task => {
     return <Task message={task.message} id={task.id} />
   })
-}
+} 
 
 const TaskApp = () => {
   const [tasks,setTasks] = useState(data);
