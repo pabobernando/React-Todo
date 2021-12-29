@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { Button } from '@material-ui/core';
 
 
 const data = [
@@ -41,7 +42,7 @@ const TaskAdder = ({setTasks, tasks}) => {
 
   return <div>
     <input type="text" value={currentValue} onChange={event => setCurrentValue(event.target.value)}/>
-    <button disabled={currentValue === ''} onClick={() => handleAddTask()}>Tambah</button>
+    <Button color="primary" disabled={currentValue === ''} onClick={() => handleAddTask()}>Tambah</Button>
   </div>
 };
 
@@ -66,12 +67,12 @@ const TaskList = ({tasks, setTasks}) => {
 
 const TaskApp = () => {
   const [tasks,setTasks] = useState(data);
-  return <>
+  return < div className='container'>
     <Header />
     <InfoBar taskNumber={tasks.length} />
     <TaskAdder setTasks={setTasks} tasks={tasks} />
     <TaskList tasks={tasks} setTasks={setTasks} />
-  </>
+  </div>
 };
 
 const App = () => {
